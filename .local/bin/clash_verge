@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# clash-verge启动脚本
+# clash-verge在注销时不会退出clash-meta进程，导致再登录时打开界面不显示文字
+
+kill_clash_meta() {
+    pid=$(ps -ef | grep clash-meta | sed -n 1p | awk '{print $2}')
+    kill $pid
+}
+
+if (( $(ps -ef | grep clash-meta | wc -l) == 2 ))
+then
+    kill_clash_meta
+fi
+
+clash-verge

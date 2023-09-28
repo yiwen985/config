@@ -1,0 +1,22 @@
+#!/bin/bash
+
+mp4="-f 'bv[ext=mp4]+ba[ext=m4a]'"
+m4a="-f140"
+
+echo "视频(1)，音频(2): "
+read choice
+case "$choice" in
+  1)
+    format="$mp4"
+    ;;
+  2)
+    format="$m4a"
+    ;;
+  *)
+    # exit 0
+    ;;
+esac
+
+source $HOME/.local/my_python_venv/bin/activate
+yt-dlp $format $*
+# deactive
